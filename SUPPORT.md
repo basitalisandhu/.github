@@ -4,7 +4,7 @@ Thanks for using these projects. Here is where to get help.
 
 ## Documentation first
 
-Every repository has a README with setup and usage, and the larger ones have a `docs/` folder. Start there. The platform overview, architecture and glossary live in [hisar](https://github.com/basitalisandhu/hisar).
+Every repository has a README with setup and usage, and the larger ones have a `docs/` folder. Start there. The platform overview, architecture and glossary live in [masoon](https://github.com/basitalisandhu/masoon).
 
 ## Questions and ideas
 
@@ -21,4 +21,4 @@ Never post these publicly. Follow [SECURITY.md](SECURITY.md).
 
 ## Response times
 
-These projects are maintained by one person in the open, without a support contract or an SLA. Issues are triaged regularly; bugs in the two flagship projects (`hisar-broker`, `llm-agent-control-plane`) and security reports get priority. If something is blocking you, say so in the issue.
+These projects are maintained by one person in the open, without a support contract or an SLA. Issues are triaged regularly; bugs in the two flagship projects (`masoon-broker`, `llm-agent-control-plane`) and security reports get priority. If something is blocking you, say so in the issue.
