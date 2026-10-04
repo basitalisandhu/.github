@@ -1,0 +1,165 @@
+# Reusable security baseline for every repository under basitalisandhu.
+#
+# Call it from a repository workflow:
+#
+#   jobs:
+#     baseline:
+#       uses: basitalisandhu/.github/.github/workflows/reusable-security.yml@main
+#       permissions:
+#         actions: read
+#         contents: read
+#         security-events: write
+#         id-token: write
+#         pull-requests: write
+#       secrets: inherit
+#
+# Each job asks only for the permissions it needs; the caller must grant at
+# least those. Every job can be switched off through an input.
+
+name: Reusable security baseline
+
+on:
+  workflow_call:
+    inputs:
+      codeql:
+        description: Run CodeQL analysis
+        type: boolean
+        default: true
+      codeql-languages:
+        description: Comma-separated CodeQL languages. Empty means auto-detect.
+        type: string
+        default: ""
+      gitleaks:
+        description: Scan git history for secrets with gitleaks
+        type: boolean
+        default: true
+      dependency-review:
+        description: Review dependency changes on pull requests
+        type: boolean
+        default: true
+      dependency-fail-on-severity:
+        description: Lowest severity that fails dependency review (low, moderate, high, critical)
+        type: string
+        default: high
+      scorecard:
+        description: Run OpenSSF Scorecard on the default branch
+        type: boolean
+        default: true
+    secrets:
+      GITLEAKS_LICENSE:
+        description: Only required for organization repositories
+        required: false
+
+jobs:
+  codeql:
+    name: CodeQL
+    if: ${{ inputs.codeql }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ inputs.codeql-languages }}
+          queries: security-extended
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@v3
+
+  gitleaks:
+    name: Secret scan
+    if: ${{ inputs.gitleaks }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: read   # gitleaks-action lists the pull request's commits on pull_request events
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+          GITLEAKS_ENABLE_COMMENTS: "false"
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
+          GITLEAKS_ENABLE_SUMMARY: "true"
+
+  dependency-review:
+    name: Dependency review
+    if: ${{ inputs.dependency-review && github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Review dependency changes
+        uses: actions/dependency-review-action@v4.9.0
+        with:
+          fail-on-severity: ${{ inputs.dependency-fail-on-severity }}
+          comment-summary-in-pr: on-failure
+
+  scorecard:
+    name: OpenSSF Scorecard
+    # Scorecard is only meaningful on the default branch. publish_results is
+    # off because the public Scorecard API verifies the calling workflow file
+    # and does not accept reusable workflows; results still land in code
+    # scanning. Use the official standalone workflow if you want the badge.
+    if: >-
+      ${{ inputs.scorecard
+          && github.event_name != 'pull_request'
+          && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      id-token: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run Scorecard
+        uses: ossf/scorecard-action@v2.4.2
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          publish_results: false
+
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scorecard-results
+          path: results.sarif
+          retention-days: 5
+
+      - name: Upload results to code scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif

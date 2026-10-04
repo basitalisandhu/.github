@@ -1,0 +1,7 @@
+{
+  "name": "Security baseline",
+  "description": "CodeQL, gitleaks secret scanning, dependency review and OpenSSF Scorecard through the account-wide reusable workflow.",
+  "iconName": "security-baseline",
+  "categories": ["Code Scanning", "Security"],
+  "filePatterns": ["package.json$", "pyproject.toml$", "requirements.txt$", "go.mod$"]
+}
