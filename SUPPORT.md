@@ -4,12 +4,13 @@ Thanks for using these projects. Here is where to get help.
 
 ## Documentation first
 
-Every repository has a README with setup and usage, and the larger ones have a `docs/` folder. Start there. The platform overview, architecture and glossary live in [masoon](https://github.com/basitalisandhu/masoon).
+Every repository has a README with setup and usage, and the larger ones have a `docs/` folder. Start there. The list of public repositories, grouped by theme, is on the [profile](https://github.com/basitalisandhu).
 
 ## Questions and ideas
 
-- Use **GitHub Discussions** on the repository when Discussions are enabled there.
-- Otherwise open an issue with the **feature request** template and put "question" in the title.
+- Ask in the issues of the repository the question is about: open an issue with the **feature request** template and put "question" in the title.
+- Use **GitHub Discussions** on that repository instead when Discussions are enabled there.
+- Not sure which repository fits? Start from the [profile](https://github.com/basitalisandhu), which lists every public repository with a one-line description.
 
 ## Bugs
 
@@ -21,4 +22,4 @@ Never post these publicly. Follow [SECURITY.md](SECURITY.md).
 
 ## Response times
 
-These projects are maintained by one person in the open, without a support contract or an SLA. Issues are triaged regularly; bugs in the two flagship projects (`masoon-broker`, `llm-agent-control-plane`) and security reports get priority. If something is blocking you, say so in the issue.
+These projects are maintained by one person in the open, without a support contract or an SLA. Issues are triaged regularly; security reports get priority. If something is blocking you, say so in the issue.

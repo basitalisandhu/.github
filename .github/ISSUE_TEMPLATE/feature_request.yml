@@ -28,7 +28,7 @@ body:
       label: Area
       options:
         - Policy / authorization
-        - Credentials / broker
+        - Credentials / secrets
         - Audit / evidence
         - Dataset / taxonomy
         - Rules / static analysis
