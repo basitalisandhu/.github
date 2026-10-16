@@ -8,11 +8,13 @@ GitHub applies the files in this repository to any repository of the account tha
 
 | File | Purpose |
 |---|---|
-| [SECURITY.md](SECURITY.md) | How to report vulnerabilities: private advisories, 90-day coordinated disclosure |
+| [SECURITY.md](SECURITY.md) | How to report vulnerabilities: private reporting, acknowledgement in 7 days, 90-day coordinated disclosure |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute: issues, commits, pull requests, datasets |
 | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Contributor Covenant 2.1 |
 | [SUPPORT.md](SUPPORT.md) | Where to get help and what to expect |
 | [FUNDING.yml](FUNDING.yml) | Sponsor button |
+| [.github/workflows/lint.yml](.github/workflows/lint.yml) | This repository's own CI: Markdown and YAML lint |
+| [.github/dependabot.yml](.github/dependabot.yml) | Weekly updates for the actions pinned in the reusable workflow |
 | [.github/ISSUE_TEMPLATE/](.github/ISSUE_TEMPLATE/) | Bug report and feature request forms, plus links for security and support |
 | [PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md) | Pull request checklist |
 | [.github/workflows/reusable-security.yml](.github/workflows/reusable-security.yml) | Reusable security baseline: CodeQL, gitleaks, dependency review, OpenSSF Scorecard |
@@ -64,7 +66,7 @@ Notes:
 - Scorecard results go to the repository's code scanning tab. Publishing to the public Scorecard API (needed for the badge) requires the standalone official Scorecard workflow in each repository, because that service verifies the workflow file and does not accept results from reusable workflows.
 - `secrets: inherit` only matters for an optional `GITLEAKS_LICENSE`. Personal accounts do not need one.
 - Workflow templates in `workflow-templates/` are only surfaced by GitHub's "New workflow" page for organizations. For a personal account, copy the snippet above.
-- Pin the `@main` reference to a tag or commit SHA if you need reproducible CI; Dependabot keeps pinned references current.
+- Every action inside the reusable workflow is pinned to a full commit SHA. Pin the `@main` reference to a commit SHA as well if you need reproducible CI; Dependabot keeps pinned references current.
 
 ## Keeping it honest
 

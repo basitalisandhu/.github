@@ -25,4 +25,4 @@
 - [ ] Tests pass locally and new behaviour is covered
 - [ ] Docs, examples or changelog updated where relevant
 - [ ] No secrets, tokens or private data in the diff or commit history
-- [ ] Commits follow Conventional Commits and are signed off (`git commit -s`)
+- [ ] Commit messages say what changed and why (Conventional Commits preferred)

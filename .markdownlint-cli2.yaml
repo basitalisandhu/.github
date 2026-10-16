@@ -1,0 +1,10 @@
+config:
+  default: true
+  MD013: false   # long lines are fine in prose and tables
+  MD024:
+    siblings_only: true
+  MD033: false   # HTML comments in templates
+  MD041: false   # the pull request template starts with an H2
+  MD060: false   # house style writes table separators as |---|
+ignores:
+  - "node_modules/**"
