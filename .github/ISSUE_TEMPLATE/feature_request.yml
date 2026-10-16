@@ -27,7 +27,10 @@ body:
     attributes:
       label: Area
       options:
-        - Policy / authorization
+        - Claude Code skills / plugins
+        - MCP servers / tooling
+        - Agent identities / permissions
+        - Cloud (AWS, Microsoft 365)
         - Credentials / secrets
         - Audit / evidence
         - Dataset / taxonomy

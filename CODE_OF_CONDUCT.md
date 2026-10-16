@@ -60,9 +60,12 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement: the maintainer,
-Muhammad Basit Ali, at the contact address published on
-[github.com/basitalisandhu](https://github.com/basitalisandhu).
-<!-- Replace the line above with a dedicated conduct email address when one exists. -->
+Muhammad Basit Ali. To report privately, use the private reporting form on the
+repository where it happened (**Security** tab, **Report a vulnerability**) and
+start the title with "Conduct:"; only you and the maintainer can see it. You can
+also report content to GitHub with its
+[Report abuse](https://docs.github.com/en/communities/maintaining-your-safety-on-github/reporting-abuse-or-spam)
+feature.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the

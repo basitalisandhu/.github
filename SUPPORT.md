@@ -4,7 +4,7 @@ Thanks for using these projects. Here is where to get help.
 
 ## Documentation first
 
-Every repository has a README with setup and usage, and the larger ones have a `docs/` folder. Start there. The list of public repositories, grouped by theme, is on the [profile](https://github.com/basitalisandhu).
+Every repository has a README with setup and usage, and the larger ones have a `docs/` folder. Start there. Every project also has a page with install steps and releases on [basitalisandhu.github.io](https://basitalisandhu.github.io/), and the [profile](https://github.com/basitalisandhu) lists every public repository grouped by theme.
 
 ## Questions and ideas
 
@@ -18,7 +18,7 @@ Open an issue with the **bug report** template. Include versions, a minimal repr
 
 ## Security issues
 
-Never post these publicly. Follow [SECURITY.md](SECURITY.md).
+Never post these publicly. Follow [SECURITY.md](SECURITY.md). A risky file that a scanner here fails to flag is not a vulnerability; open a normal issue with a minimal fixture.
 
 ## Response times
 
