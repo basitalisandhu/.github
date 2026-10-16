@@ -10,6 +10,8 @@ Unless a repository says otherwise, only the latest release receives security fi
 
 ## Reporting a vulnerability
 
+Report a vulnerability privately: <https://github.com/basitalisandhu/.github/security/advisories/new>
+
 Please use GitHub's private vulnerability reporting on the affected repository (**Security** tab, **Report a vulnerability**) rather than a public issue, discussion or pull request. Only you and the maintainer can see the report. Private reporting is switched on for every public repository of this account.
 
 Include:
